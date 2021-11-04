@@ -73,3 +73,9 @@ To run the app locally, in the project directory root execute: ``mvn spring-boot
 
 * unit tests: ``mvn clean test``
 * unit + end-to-end tests: ``mvn clean verify``
+
+## Deployment
+
+This app can be deployed to heroku easily. All you have to do is to
+follow [these instructions](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku#preparing-a-spring-boot-app-for-heroku)
+Note: the postgresql connection details are overridden automatically by heroku, so the app will run immediately.
