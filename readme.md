@@ -4,7 +4,7 @@ This project can be used as a starting point for a new Spring Boot webapp projec
 
 ## Features
 
-* persistence with Spring Data JPA
+* persistence with Spring Data JPA and postgresql
 * authentication with JWT
 * test strategy for unit and end-to-end tests
 
@@ -15,11 +15,11 @@ of the project.
 
 This collection can be imported into Postman to see all the requests and their payloads.
 
-* POST /register - (public) allows user registration (without email verification).
+* POST /register - (public) allows userProfile registration (without email verification).
 * POST /authenticate - (public) authentication (using JWT), returns the auth token string
-* GET /account - allows user to see account balance and current transactions
-* POST /topup - allows user to transfer money to their own account
-* POST /transfer - allow user to transfer money to another existing user
+* GET /account - allows userProfile to see account balance and current transactions
+* POST /topup - allows userProfile to transfer money to their own account
+* POST /transfer - allow userProfile to transfer money to another existing userProfile
   * transferring money to self is not allowed,
   * transfer of sum bigger that current account balance is not allowed
   * transferring money to non-existing account is not allowed
@@ -50,16 +50,16 @@ In order to access the protected endpoints:
 My goal was to define a test strategy, more than to cover all the code with tests. The existing tests can be seen as
 guidelines for new tests.
 
-* fully covered with unit tests: UserRepository and UserService.
+* fully covered with unit tests: UserProfileRepository and UserService.
 * partially covered with end-to-end test: all endpoints are covered at least on the "happy" path with e-2-e test.
 
 ## Development
 
 Prerequisites:
-
 * java SDK 11
 * maven 3+
-* mysql 8 (configuration of host, port and credentials is possible in application.properties)
+* postgresql 14 (configuration of host, port and credentials is possible in application.properties). For
+  example: ``docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=test123 postgres:14``
 
 ### Debugging
 

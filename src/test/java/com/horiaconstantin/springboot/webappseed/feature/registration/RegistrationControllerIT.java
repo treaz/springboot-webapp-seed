@@ -1,6 +1,6 @@
 package com.horiaconstantin.springboot.webappseed.feature.registration;
 
-import com.horiaconstantin.springboot.webappseed.domain.User;
+import com.horiaconstantin.springboot.webappseed.domain.UserProfile;
 import com.horiaconstantin.springboot.webappseed.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,7 +45,7 @@ class RegistrationControllerIT {
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.username", is("newuser")));
 
-		Optional<User> newuser = userRepository.findByUsername(USER);
+		Optional<UserProfile> newuser = userRepository.findByUsername(USER);
 		assertTrue(newuser.isPresent());
 		assertEquals(USER, newuser.get().getUsername());
 	}

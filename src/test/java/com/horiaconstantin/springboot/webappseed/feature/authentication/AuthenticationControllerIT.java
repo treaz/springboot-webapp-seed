@@ -1,6 +1,6 @@
 package com.horiaconstantin.springboot.webappseed.feature.authentication;
 
-import com.horiaconstantin.springboot.webappseed.domain.User;
+import com.horiaconstantin.springboot.webappseed.domain.UserProfile;
 import com.horiaconstantin.springboot.webappseed.repository.UserRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -40,14 +40,14 @@ class AuthenticationControllerIT {
 	@Autowired
 	private MockMvc mvc;
 
-	static User user;
+	static UserProfile userProfile;
 
 	@BeforeAll
 	public static void init(@Autowired UserRepository userRepository) {
-		user = new User()
+		userProfile = new UserProfile()
 				.setUsername(USER)
 				.setPassword(PASSWORD);
-		userRepository.save(user);
+		userRepository.save(userProfile);
 	}
 
 	@Test

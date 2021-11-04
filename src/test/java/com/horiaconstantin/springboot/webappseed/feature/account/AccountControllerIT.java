@@ -1,7 +1,7 @@
 package com.horiaconstantin.springboot.webappseed.feature.account;
 
 import com.horiaconstantin.springboot.webappseed.domain.Transaction;
-import com.horiaconstantin.springboot.webappseed.domain.User;
+import com.horiaconstantin.springboot.webappseed.domain.UserProfile;
 import com.horiaconstantin.springboot.webappseed.repository.TransactionRepository;
 import com.horiaconstantin.springboot.webappseed.repository.UserRepository;
 import org.junit.jupiter.api.*;
@@ -40,14 +40,14 @@ class AccountControllerIT {
 	@Autowired
 	private MockMvc mvc;
 
-	static User user;
+	static UserProfile userProfile;
 
 	@BeforeAll
 	public static void init(@Autowired UserRepository userRepository) {
-		user = new User()
+		userProfile = new UserProfile()
 				.setUsername(USER)
 				.setPassword(PASSWORD);
-		userRepository.save(user);
+		userRepository.save(userProfile);
 	}
 
 	@WithMockUser(username = "nonexisting", password = PASSWORD)
@@ -76,7 +76,7 @@ class AccountControllerIT {
 	@Order(2)
 	public void testAccountWithTransactions() throws Exception {
 		Transaction s = new Transaction()
-				.setUser(user)
+				.setUserProfile(userProfile)
 				.setOpeningBalance(1000)
 				.setTransactionAmount(200)
 				.setTransactionDate(new Date());

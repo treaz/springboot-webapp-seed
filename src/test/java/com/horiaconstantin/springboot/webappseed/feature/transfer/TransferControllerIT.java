@@ -1,6 +1,6 @@
 package com.horiaconstantin.springboot.webappseed.feature.transfer;
 
-import com.horiaconstantin.springboot.webappseed.domain.User;
+import com.horiaconstantin.springboot.webappseed.domain.UserProfile;
 import com.horiaconstantin.springboot.webappseed.repository.UserRepository;
 import com.horiaconstantin.springboot.webappseed.service.TransactionService;
 import org.junit.jupiter.api.BeforeAll;
@@ -35,25 +35,25 @@ class TransferControllerIT {
 	@Autowired
 	private MockMvc mvc;
 
-	static User user;
-	static User user2;
+	static UserProfile userProfile;
+	static UserProfile userProfile2;
 
 	@BeforeAll
 	public static void init(@Autowired UserRepository userRepository) {
-		user = new User()
+		userProfile = new UserProfile()
 				.setUsername(USER)
 				.setPassword(PASSWORD);
-		userRepository.save(user);
-		user2 = new User()
+		userRepository.save(userProfile);
+		userProfile2 = new UserProfile()
 				.setUsername(USER2)
 				.setPassword(PASSWORD);
-		userRepository.save(user2);
+		userRepository.save(userProfile2);
 	}
 
 	@WithMockUser(username = USER, password = PASSWORD)
 	@Test
 	public void testTransfer() throws Exception {
-		transactionService.executeTopupTransactionFor(1000, user);
+		transactionService.executeTopupTransactionFor(1000, userProfile);
 
 		mvc.perform(post("/transfer")
 						.contentType(MediaType.APPLICATION_JSON)

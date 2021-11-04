@@ -1,6 +1,6 @@
 package com.horiaconstantin.springboot.webappseed.service;
 
-import com.horiaconstantin.springboot.webappseed.domain.User;
+import com.horiaconstantin.springboot.webappseed.domain.UserProfile;
 import org.springframework.stereotype.Service;
 
 import static java.lang.String.format;
@@ -17,10 +17,10 @@ public class TransferService {
 	}
 
 	public long transfer(long amount, String username) {
-		User receiver = userService.getUser(username);
-		User currentUser = userService.getCurrentUser();
+		UserProfile receiver = userService.getUser(username);
+		UserProfile currentUserProfile = userService.getCurrentUser();
 
-		if (receiver.equals(currentUser)) {
+		if (receiver.equals(currentUserProfile)) {
 			throw new TransferException("Only transferring money to other users is allowed.");
 		}
 

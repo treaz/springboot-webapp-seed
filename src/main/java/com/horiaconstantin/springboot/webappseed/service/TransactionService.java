@@ -1,7 +1,7 @@
 package com.horiaconstantin.springboot.webappseed.service;
 
 import com.horiaconstantin.springboot.webappseed.domain.Transaction;
-import com.horiaconstantin.springboot.webappseed.domain.User;
+import com.horiaconstantin.springboot.webappseed.domain.UserProfile;
 import com.horiaconstantin.springboot.webappseed.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,22 +22,22 @@ public class TransactionService {
 	}
 
 	public long getAccountBalance() {
-		User user = userRepository.getCurrentUser();
-		return transactionRepository.findFirstByUserOrderByTransactionDateDesc(user)
+		UserProfile userProfile = userRepository.getCurrentUser();
+		return transactionRepository.findFirstByUserProfileOrderByTransactionDateDesc(userProfile)
 				.map(lastTransaction -> lastTransaction.getOpeningBalance() - lastTransaction.getTransactionAmount())
 				.orElse(ACCOUNT_EMPTY);
 	}
 
-	public long getAccountBalance(User user) {
-		return transactionRepository.findFirstByUserOrderByTransactionDateDesc(user)
+	public long getAccountBalance(UserProfile userProfile) {
+		return transactionRepository.findFirstByUserProfileOrderByTransactionDateDesc(userProfile)
 				.map(lastTransaction -> lastTransaction.getOpeningBalance() - lastTransaction.getTransactionAmount())
 				.orElse(ACCOUNT_EMPTY);
 	}
 
 
 	public List<Transaction> findByUserOrderByTransactionDateDesc() {
-		User user = userRepository.getCurrentUser();
-		return transactionRepository.findByUserOrderByTransactionDateDesc(user);
+		UserProfile userProfile = userRepository.getCurrentUser();
+		return transactionRepository.findByUserProfileOrderByTransactionDateDesc(userProfile);
 	}
 
 	public Transaction executeTopupTransaction(long amount) {
@@ -46,16 +46,16 @@ public class TransactionService {
 
 	public Transaction executeDeductionTransaction(long amount) {
 		Transaction deductionTransaction = new Transaction();
-		deductionTransaction.setUser(userRepository.getCurrentUser());
+		deductionTransaction.setUserProfile(userRepository.getCurrentUser());
 		deductionTransaction.setTransactionAmount(amount);
 		deductionTransaction.setTransactionDate(new Date());
 		deductionTransaction.setOpeningBalance(getAccountBalance());
 		return transactionRepository.save(deductionTransaction);
 	}
 
-	public Transaction executeTopupTransactionFor(long amount, User recipient) {
+	public Transaction executeTopupTransactionFor(long amount, UserProfile recipient) {
 		Transaction topupTransaction = new Transaction();
-		topupTransaction.setUser(recipient);
+		topupTransaction.setUserProfile(recipient);
 		topupTransaction.setTransactionAmount(-amount);
 		topupTransaction.setTransactionDate(new Date());
 		topupTransaction.setOpeningBalance(getAccountBalance(recipient));

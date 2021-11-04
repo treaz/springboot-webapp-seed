@@ -1,6 +1,6 @@
 package com.horiaconstantin.springboot.webappseed.feature.authentication;
 
-import com.horiaconstantin.springboot.webappseed.domain.User;
+import com.horiaconstantin.springboot.webappseed.domain.UserProfile;
 import com.horiaconstantin.springboot.webappseed.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,9 +20,9 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByUsername(username)
+		UserProfile userProfile = userRepository.findByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+		return new org.springframework.security.core.userdetails.User(userProfile.getUsername(), userProfile.getPassword(),
 				new ArrayList<>());
 	}
 }

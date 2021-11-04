@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(indexes = @Index(columnList = "username"))
-public class User {
+public class UserProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -22,14 +22,14 @@ public class User {
 	@JsonIgnore
 	private String password;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "userProfile")
 	private Set<Transaction> transactions;
 
 	public String getUsername() {
 		return username;
 	}
 
-	public User setUsername(String username) {
+	public UserProfile setUsername(String username) {
 		this.username = username;
 		return this;
 	}
@@ -38,7 +38,7 @@ public class User {
 		return password;
 	}
 
-	public User setPassword(String password) {
+	public UserProfile setPassword(String password) {
 		this.password = password;
 		return this;
 	}
@@ -48,11 +48,11 @@ public class User {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 
-		User user = (User) o;
+		UserProfile userProfile = (UserProfile) o;
 
-		if (id != user.id) return false;
-		if (!username.equals(user.username)) return false;
-		return password.equals(user.password);
+		if (id != userProfile.id) return false;
+		if (!username.equals(userProfile.username)) return false;
+		return password.equals(userProfile.password);
 	}
 
 	@Override

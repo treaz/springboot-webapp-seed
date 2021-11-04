@@ -1,6 +1,6 @@
 package com.horiaconstantin.springboot.webappseed.service;
 
-import com.horiaconstantin.springboot.webappseed.domain.User;
+import com.horiaconstantin.springboot.webappseed.domain.UserProfile;
 import com.horiaconstantin.springboot.webappseed.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +15,7 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 
-	public User getCurrentUser() {
+	public UserProfile getCurrentUser() {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
 		String username = userDetails.getUsername();
@@ -23,7 +23,7 @@ public class UserService {
 		return getUser(username);
 	}
 
-	public User getUser(String username) {
+	public UserProfile getUser(String username) {
 		return userRepository.findByUsername(username)
 				.orElseThrow(() -> new UserNotFoundException("User not found with username: " + username));
 	}

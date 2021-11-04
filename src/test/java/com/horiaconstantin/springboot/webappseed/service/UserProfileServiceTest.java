@@ -1,6 +1,6 @@
 package com.horiaconstantin.springboot.webappseed.service;
 
-import com.horiaconstantin.springboot.webappseed.domain.User;
+import com.horiaconstantin.springboot.webappseed.domain.UserProfile;
 import com.horiaconstantin.springboot.webappseed.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class UserServiceTest {
+class UserProfileServiceTest {
 
 	@Mock
 	private Authentication authentication;
@@ -42,26 +42,26 @@ class UserServiceTest {
 		String password = "password";
 		mockSecurityContextHolderUser(username, password);
 
-		User expected = new User()
+		UserProfile expected = new UserProfile()
 				.setUsername(username)
 				.setPassword(password);
 
 		when(userRepository.findByUsername(anyString())).thenReturn(Optional.of(expected));
-		User currentUser = userService.getCurrentUser();
+		UserProfile currentUserProfile = userService.getCurrentUser();
 
-		assertEquals(expected.getUsername(), currentUser.getUsername());
+		assertEquals(expected.getUsername(), currentUserProfile.getUsername());
 	}
 
 	@Test
 	void getUser() {
-		User expected = new User()
+		UserProfile expected = new UserProfile()
 				.setUsername("other")
 				.setPassword("password");
 
 		when(userRepository.findByUsername(anyString())).thenReturn(Optional.of(expected));
-		User currentUser = userService.getUser("other");
+		UserProfile currentUserProfile = userService.getUser("other");
 
-		assertEquals(expected.getUsername(), currentUser.getUsername());
+		assertEquals(expected.getUsername(), currentUserProfile.getUsername());
 	}
 
 	@Test

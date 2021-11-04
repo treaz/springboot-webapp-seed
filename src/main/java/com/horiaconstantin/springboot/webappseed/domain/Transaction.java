@@ -18,8 +18,8 @@ public class Transaction {
 
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = false)
-	private User user;
+	@JoinColumn(name = "userProfile_id", nullable = false)
+	private UserProfile userProfile;
 
 	@PastOrPresent
 	@Column(nullable = false)
@@ -33,12 +33,12 @@ public class Transaction {
 	@Column(nullable = false)
 	private long transactionAmount;
 
-	public User getUser() {
-		return user;
+	public UserProfile getUserProfile() {
+		return userProfile;
 	}
 
-	public Transaction setUser(User user) {
-		this.user = user;
+	public Transaction setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
 		return this;
 	}
 
@@ -73,7 +73,7 @@ public class Transaction {
 	public String toString() {
 		return "Transaction{" +
 				"id=" + id +
-				", user=" + user +
+				", userProfile=" + userProfile +
 				", transactionDate=" + transactionDate +
 				", openingBalance=" + openingBalance +
 				", TransactionAmount=" + transactionAmount +
