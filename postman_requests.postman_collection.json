@@ -1,0 +1,177 @@
+{
+  "info": {
+    "_postman_id": "da08e4d2-53d3-4b1a-8d15-5c5c0667851a",
+    "name": "postman_requests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "register",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"horia\",\n    \"password\": \"rehpog123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "authenticate",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"horia\",\n    \"password\": \"password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/authenticate",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "authenticate"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "account",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJob3JpYSIsImV4cCI6MTYzNTk4MDQ4OCwiaWF0IjoxNjM1OTYyNDg4fQ.Pnkz_ezuXcxOYtmwDpR-77NYlGtqM_YSGpT1vAux-3SRLme8PKml93YjHBjbYzhHpoqB_zlaybGZU8YbMIXqCQ",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/account",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "account"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "topup",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJob3JpYSIsImV4cCI6MTYzNTk4MDQ4OCwiaWF0IjoxNjM1OTYyNDg4fQ.Pnkz_ezuXcxOYtmwDpR-77NYlGtqM_YSGpT1vAux-3SRLme8PKml93YjHBjbYzhHpoqB_zlaybGZU8YbMIXqCQ",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"amount\": 1000\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/topup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "topup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "transfer",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJob3JpYSIsImV4cCI6MTYzNTk4NzcxNiwiaWF0IjoxNjM1OTY5NzE2fQ.BN2njiIt5jHKMekgmGczvxy6kt1ghbdgamQ2PsmA3uCkgvOofXW5gZX8HRYxS5YzGvc1gKQ9_oHuHTNIEKXpng",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"amount\": 1700,\n    \"receiverUsername\": \"horia\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/transfer",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "transfer"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
